@@ -9,7 +9,10 @@ app.config['SECRET_KEY'] = 'super secret key'
 
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
-	return render_template("user_dashboard.html")
+	if session.get('logged_in'):
+		return render_template("user_dashboard.html")
+	else:
+		return redirect(url_for('login_u'))
 	#return 'Hello World'
 	'''
 	if not session.get('logged_in'):
@@ -76,6 +79,7 @@ def get_complaints():
 			print("Hello")
 		print("Out of loop")
 	return jsonify(arr)
+
 @app.route('/api/search', methods=['GET', 'POST'])
 def search_db():
 	keyword = request.args.get('q')
