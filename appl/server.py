@@ -65,7 +65,7 @@ def get_complaints():
 	
 
 	c,conn=connection()
-	rows = c.execute("select * from COMPLAINTS;");
+	rows = c.execute("select * from COMPLAINTS ORDER BY c_time_of_lodging DESC;");
 	if rows > 0:
 		results=c.fetchall()
 		arr=[]

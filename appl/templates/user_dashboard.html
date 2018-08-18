@@ -2,7 +2,7 @@
 	<head>
 		<script>
 			function Hi(){
-				document.getElementById("complaints").innerHTML="Hi";
+				//document.getElementById("complaints").innerHTML="Hi";
 				/*var ajax_get = function(url, callback) {
 					var xmlhttp = new XMLHttpRequest();
 	        		xmlhttp.onreadystatechange = function() {
@@ -31,17 +31,17 @@
 				obj.onreadystatechange = function(){
 				if(obj.readyState == 4){
 					var val = JSON.parse(obj.responseText);
+				document.getElementById("complaints").innerHTML="Hi"+val[0].length;
 					for(var i=0;i<val.length;i++){
 					//tempval = val[i][0];
-					document.getElementById("complaints").innerHTML+="Hi"+val[i][1]+" ";
-					}
+					document.getElementById("complaints").innerHTML+="<tr><td>"+val[i][0]+"</td><td>"+val[i][1]+"</td><td>"+val[i][2]+"</td><td>"+val[i][3]+"</td><td>"+val[i][4]+"</td><td>"+"<button onclick='/login'>+</button></td><td>"+val[i][5]+"</td><td>"+val[i][6]+"</td></tr>";					}
 				}
 			}
 					
 				
-				/*}
-				}
-				}*/
+				
+				//}
+				//}
 				obj.open("GET",url, true);
 				obj.send();
 				}
@@ -64,13 +64,17 @@
 			SEARCH: <input style="width:20cm;" type = "text" id = "Query" name="Query"/>
 			<input type = "submit" id = "button1" value = "Go!" onclick="Hi()" />
 		</div>
-		<table style = "margin-top:2cm;" id = "complaints"> 
+		<!--<div id = "complaints" > </div>-->
+		<table style = "margin-top:2cm;" id = "complaints" name="complaints"> 
 			<tr>
 				<th>Complaint ID</th>
 				<th>Department</th>
 				<th>Subject</th>
 				<th>Text</th>
-				
+				<th>Time</th>
+				<th>ReAsk</th>
+				<th>Status</th>
+				<th>Resolve Update</th>
 			</tr>
 		</table>
 	</body>

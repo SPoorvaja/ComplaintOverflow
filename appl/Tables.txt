@@ -44,7 +44,7 @@ c_subject VARCHAR(100),
 #___Text of complaint___
 c_text LONGTEXT,
 #___Time of most recent reask___
-c_time_of_lodging DATETIME
+c_time_of_lodging DATETIME,
 #___Resolve status. TRUE if resolved___
 c_status BOOLEAN,
 #___Resolve update. An explanation by official who resolved___
