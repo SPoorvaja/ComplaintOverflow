@@ -45,14 +45,33 @@
 				obj.open("GET",url, true);
 				obj.send();
 				}
+
+				function search_ajax(){
+					var url="/api/search"
+					var obj = new XMLHttpRequest();
+					obj.onreadystatechange = function(){
+						if(obj.readyState == 4){
+							var val = JSON.parse(obj.responseText);
+
+							for(var i = 0; i < val.length; i++){
+								document.getElementById("complaints").innerHTML += "Hi " + val[i][0] + " ";
+							}
+						}
+					}
+					url = url+"?q="+document.getElementById("Query").value;
+					obj.open("GET", url, true);
+					obj.send();
+				}
 		</script>
 	</head>
 	<body onload="Hi()">
 		<h1>
 				Welcome
-				<button style="margin-left:16cm;" onclick="window.location.href='login_user.html'">
+				<form method="post" action="/logout">
+				<button style="margin-left:16cm;" >
 					Log Out
 				</button>
+				</form>
 				<button style="margin-left:2cm;" onclick="window.location.href='lodge_complaint.html'"> 
 					Lodge a complaint 
 				</button>
@@ -62,7 +81,7 @@
 		</h1>
 		<div>
 			SEARCH: <input style="width:20cm;" type = "text" id = "Query" name="Query"/>
-			<input type = "submit" id = "button1" value = "Go!" onclick="Hi()" />
+			<input type = "submit" id = "button1" value = "Go!" onclick="search_ajax()" />
 		</div>
 		<table style = "margin-top:2cm;" id = "complaints"> 
 			<tr>

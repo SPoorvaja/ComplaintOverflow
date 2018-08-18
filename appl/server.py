@@ -1,8 +1,11 @@
 from flask import Flask,send_file,request,render_template,redirect,url_for,session,flash,jsonify
 from dbchecker import auth_user
 from dbconnector import connection
+import os
 app = Flask(__name__)
-
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+app.config['SESSION_TYPE'] = 'memcached'
+app.config['SECRET_KEY'] = 'super secret key'
 
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
@@ -42,7 +45,7 @@ def login_u():
 		if(uname == 'admin' and pwd == 'pass'):
 			session['logged_in'] =True
 			session['user'] = uname
-			return redirect(url_for('user_feed'))
+			return redirect(url_for('hello_world'))
 		else:
 			return redirect(url_for('login_u'))
 	return render_template('login_user.html')
@@ -73,13 +76,19 @@ def get_complaints():
 			print("Hello")
 		print("Out of loop")
 	return jsonify(arr)
-@app.route('/api/search')
+@app.route('/api/search', methods=['GET', 'POST'])
 def search_db():
-	keyword = request.form['Query']
+	keyword = request.args.get('q')
 	if keyword is not None:
 		lis = search_db(keyword)
 	if lis is not None:
 		return jsonify(lis)
+
+@app.route('/logout', methods=['GET', 'POST'])
+def log_out():
+	session['logged_in'] = False
+	session['user'] = None
+	return(redirect(url_for('login_u')))
 
 if __name__=='__main__':
 	app.run(debug=True)
