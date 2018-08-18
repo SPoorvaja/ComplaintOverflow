@@ -35,16 +35,17 @@ def login():
 			return redirect(url_for('show_feed'))
     return render_template('login_user.html', error=error)'''
 @app.route('/login', methods=['GET', 'POST'])
-def login_user():
-	error = None
-	if request.method == 'POST' or request.method == 'GET':
-		if request.form['uname'] != 'admin' or request.form['pwd'] != 'pass':
-			error = 'Invalid Credentials. Try again.'
+def login_u():
+	if request.method == 'POST':
+		uname = request.form['uname']
+		pwd = request.form['pwd']
+		if(uname == 'admin' and pwd == 'pass'):
+			session['logged_in'] =True
+			session['user'] = uname
+			return redirect(url_for('user_feed'))
 		else:
-			session['logged_in'] = True
-			session['user'] = request.form['uname']
-			return redirect(url_for('show_feed'))
-	return render_template('login_user.html', error=error)
+			return redirect(url_for('login_u'))
+	return render_template('login_user.html')
 
 @app.route('/home')
 def show_feed():
@@ -62,8 +63,6 @@ def get_complaints():
        "load" : [ 3.21, 7, 14 ]
     }
 	return jsonify(info)'''
-	
-
 	c,conn=connection()
 	rows = c.execute("select * from COMPLAINTS;");
 	if rows > 0:
@@ -74,7 +73,13 @@ def get_complaints():
 			print("Hello")
 		print("Out of loop")
 	return jsonify(arr)
-
+@app.route('/api/search')
+def search_db():
+	keyword = request.form['Query']
+	if keyword is not None:
+		lis = search_db(keyword)
+	if lis is not None:
+		return jsonify(lis)
 
 if __name__=='__main__':
 	app.run(debug=True)
