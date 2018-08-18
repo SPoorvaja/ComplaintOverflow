@@ -30,5 +30,12 @@ def login_u():
 def user_feed():
 	return 'HIII!!! I AM USER FEED'
 
+@app.route('/search', methods=['GET', 'POST'])
+def search_c():
+	return render_template('')
+@app.route('api/searching', methods=['GET', 'POST'])
+def search_db():
+	pass
+
 if __name__=='__main__':
 	app.run(debug=True)

@@ -31,3 +31,9 @@ def register_user(username, first_name, last_name, dob, phone, email,addr1,addr2
 	ins = c.execute("insert into USER values (?,?,?,?,?,?,?,?,?,?,?,?)",(username, first_name, last_name, dob, phone, email,addr1,addr2,pincode, city, state, password  ))
 	conn.commit()
 	c.close()
+
+def search_db(keyword):
+	c,conn = connection()
+
+	rows = c.execute("select * from COMPLAINTS")
+	
