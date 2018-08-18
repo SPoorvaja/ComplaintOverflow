@@ -43,6 +43,8 @@ c_dept VARCHAR(100),
 c_subject VARCHAR(100),
 #___Text of complaint___
 c_text LONGTEXT,
+#___Time of most recent reask___
+c_time_of_lodging DATETIME
 #___Resolve status. TRUE if resolved___
 c_status BOOLEAN,
 #___Resolve update. An explanation by official who resolved___
@@ -91,9 +93,9 @@ time_of_resolving DATETIME
 
 
 
-insert into COMPLAINTS values ("100","Railways","blah","blah blah",FALSE, "bllaahh");
-insert into COMPLAINTS values ("101","pwd","blah","blah blah",FALSE, "bllaahh");
-insert into COMPLAINTS values ("102","edu","blah","blah blah",FALSE, "bllaahh");
+insert into COMPLAINTS values ("100","Railways","blah","blah blah",FALSE, "bllaahh", "2018-08-18 00:00:00");
+insert into COMPLAINTS values ("101","pwd","blah","blah blah",FALSE, "bllaahh", "2018-08-18 00:00:00");
+insert into COMPLAINTS values ("102","edu","blah","blah blah",FALSE, "bllaahh", "2018-08-18 00:00:00");
 
 insert into PUBLIC values ("u1","pass1","f1","l1",'2018-08-18',1231,"e1","a11","a21",123,"c1","s2");
 insert into PUBLIC values ("u2","pass1","f1","l1",'2018-08-18',1232,"e1","a11","a21",123,"c1","s2");

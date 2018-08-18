@@ -30,17 +30,15 @@
 				var obj = new XMLHttpRequest();
 				obj.onreadystatechange = function(){
 				if(obj.readyState == 4){
-					var val = obj.responseText;
-					document.getElementById("complaints").innerHTML=val;
+					var val = JSON.parse(obj.responseText);
+					for(var i=0;i<val.length;i++){
+					//tempval = val[i][0];
+					document.getElementById("complaints1").innerHTML+="Hi"+val[i][1]+" ";
+					}
 				}
 			}
 					
-				/*var val = JSON.parse(obj.responseText);
-				document.getElementById("complaints").innerHTML="Hellloo";
-				for(var i=0;i<val.length;i++){
-				//alert(JSON.stringify(val, null, ' ');
-				tempval = val[i];
-				document.getElementById("complaints").innerHTML+="HiVidya";*/
+				
 				/*}
 				}
 				}*/
@@ -63,9 +61,10 @@
 				</button>
 		</h1>
 		<div>
-			SEARCH: <input style="width:20cm;" type = "text" id = "Query" name="Query/>
+			SEARCH: <input style="width:20cm;" type = "text" id = "Query" name="Query"/>
 			<input type = "submit" id = "button1" value = "Go!" onclick="Hi()" />
 		</div>
 		<div style = "margin-top:2cm;" id = "complaints"> </div>
+		<div style = "margin-top:2cm;" id = "complaints1"> </div>
 	</body>
 </html>

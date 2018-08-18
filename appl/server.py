@@ -1,5 +1,6 @@
 from flask import Flask,send_file,request,render_template,redirect,url_for,session,flash,jsonify
 from dbchecker import auth_user
+from dbconnector import connection
 app = Flask(__name__)
 
 
@@ -61,18 +62,19 @@ def get_complaints():
        "load" : [ 3.21, 7, 14 ]
     }
 	return jsonify(info)'''
-	return "oi"
+	
 
-	'''c,conn=connection()
-	c.execute("select * from COMPLAINTS order by c_time_of_lodging DESC;");
-	return "oi"
-	results=c.fetchall()
-	arr=[]
-	for rows in results:
-		arr.append(rows[0])
-	return "oi"
+	c,conn=connection()
+	rows = c.execute("select * from COMPLAINTS;");
+	if rows > 0:
+		results=c.fetchall()
+		arr=[]
+		for i in range(len(results)):
+			arr.append(results[i])
+			print("Hello")
+		print("Out of loop")
 	return jsonify(arr)
-'''
+
 
 if __name__=='__main__':
 	app.run(debug=True)

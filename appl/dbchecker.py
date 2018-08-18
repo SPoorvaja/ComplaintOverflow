@@ -38,8 +38,8 @@ def search_db(keyword):
 
 	rows = c.execute("select * from COMPLAINTS")
 	if rows > 0:
-	lis = []
-	res = c.fetchall()
+		lis = []
+		res = c.fetchall()
 		for i in range(len(res)):
 			text = res[i][3]
 			words = r.split(" ")
