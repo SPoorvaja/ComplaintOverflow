@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>COMPLAINT LOG</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>LODGE A COMPLAINT</h2>
+  <form action="lodge_complaint">
+    <div class="form-control">
+      <label for="c_dept">Department: </label>
+      <select class="form-control" id="c_dept">
+        <option>PWD</option>
+        <option>Railways</option>
+        <option>Water</option>
+        <option>Electricity</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="c_subject">Complaint Subject:</label>
+      <input type="text" class="form-control" id="c_subject" name="c_subject">
+    </div>
+    <div class="form-group">
+      <label for="c_body">Complaint Body:</label>
+      <input type="text" class="form-control" id="c_body" name="c_body">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+</body>
+</html>
