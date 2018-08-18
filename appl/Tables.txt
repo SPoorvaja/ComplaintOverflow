@@ -1,0 +1,35 @@
+/* Creating a new database for Complain Lodging Portal */
+DROP DATABASE CLP;
+CREATE DATABASE CLP;
+USE CLP;
+
+/* Create a new table for general public */
+DROP TABLE PUBLIC;
+CREATE TABLE PUBLIC(
+#-------User ID, generated after otp check.---------
+p_uid VARCHAR(10) PRIMARY KEY, 
+#-------Password, generated with user id, hashed----
+p_pwd VARCHAR(100),
+#-------First Name ---------------------------------
+p_fname VARCHAR(100),
+#-------Last Name ----------------------------------
+p_lname VARCHAR(100), 
+#-------Date of birth, checked to see if 18---------
+p_dob DATE, 
+#-------Phone Number, send otp and validate---------
+p_ph NUMERIC NOT NULL UNIQUE, 
+#-------Email ID------------------------------------
+p_email VARCHAR(100),
+#-------Address Line1 ------------------------------
+p_addr_l1 VARCHAR(100), 
+#-------Address Line2-------------------------------
+p_addr_l2 VARCHAR(100), 
+#-------Address Pincode-----------------------------
+p_addr_pincode NUMERIC, 
+#-------Address City--------------------------------
+p_addr_city VARCHAR(100),
+#-------Address State ------------------------------
+p_addr_state VARCHAR(100) 
+);
+
+
