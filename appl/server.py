@@ -5,14 +5,16 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
+	return render_template("user_dashboard.html")
 	#return 'Hello World'
+	'''
 	if not session.get('logged_in'):
 		if(request.method == 'GET' or request.method == 'POST'):
 			return redirect(url_for('login_user'))
 		#return render_template("login_user.html")
 	else:
 		return redirect(url_for('show_feed'))
-
+'''
 	'''
 	if not session.get('logged_in'):
 		return render_template('login_user.html')
@@ -48,6 +50,16 @@ def show_feed():
 		return redirect(url_for('login_user'))
 	else:
 		return "I'm newsfeed! HAHAHA"
+
+@app.route('/get_complaints')
+def get_complaints():
+	info = {
+       "ip" : "127.0.0.1",
+       "hostname" : "everest",
+       "description" : "Main server",
+       "load" : [ 3.21, 7, 14 ]
+    }
+	return jsonify(info)
 
 
 if __name__=='__main__':

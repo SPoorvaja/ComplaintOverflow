@@ -1,27 +1,34 @@
 <html>
 	<head>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
-			$(document).ready(function(){
-            $.ajax({
-                type : 'GET',
-                url : '/get_complaints',
-                dataType: "json",
-                success: function (response) {
-                    var arr = response.data;
-                    $('#complaints').append($('<p>').text("").attr('value',"")); 
-                    for(i in arr)
-                    { 
-                        $('#complaints').append($('<p>').text(arr[i]).attr('value', arr[i]));        
-                    }
-                },
-                error: function (result) {
-                alert("Error");
-                }
-            });
-        });
+		<script>
+			function Hi(){
+				document.getElementById("complaints").innerHTML="Hi";
+				var ajax_get = function(url, callback) {
+					var xmlhttp = new XMLHttpRequest();
+	        		xmlhttp.onreadystatechange = function() {
+		            	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			                	console.log('responseText:' + xmlhttp.responseText);
+			                try {
+			                    var data = JSON.parse(xmlhttp.responseText);
+			                } 
+			                catch(err) {
+			                    console.log(err.message + " in " + xmlhttp.responseText);
+			                    return;
+			                }
+			                callback(data);
+		            	}
+	            	};
+	            	xmlhttp.open("GET", url, true);
+        			xmlhttp.send();
+            	};
+            	ajax_get('/get_complaints', function(data){
+					document.getElementById('description').innerHTML = data['description'];
+            		}
+            	);
+			}
 		</script>
 	</head>
-	<body>
+	<body onload="Hi()">
 		<h1>
 				Welcome
 				<button style="margin-left:16cm;" onclick="window.location.href='login_user.html'">
@@ -36,7 +43,7 @@
 		</h1>
 		<div>
 			SEARCH: <input style="width:20cm;" type = "text" id = "Query"/>
-			<input type = "submit" id = "button1" value = "Go!" />
+			<input type = "submit" id = "button1" value = "Go!" onclick="Hi()" />
 		</div>
 		<div style = "margin-top:2cm;" id = "complaints"> </div>
 	</body>
