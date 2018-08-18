@@ -3,7 +3,7 @@
 		<script>
 			function Hi(){
 				document.getElementById("complaints").innerHTML="Hi";
-				var ajax_get = function(url, callback) {
+				/*var ajax_get = function(url, callback) {
 					var xmlhttp = new XMLHttpRequest();
 	        		xmlhttp.onreadystatechange = function() {
 		            	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -24,8 +24,29 @@
             	ajax_get('/get_complaints', function(data){
 					document.getElementById('description').innerHTML = data['description'];
             		}
-            	);
+            	);*/
+
+				var url = "/get_complaints";
+				var obj = new XMLHttpRequest();
+				obj.onreadystatechange = function(){
+				if(obj.readyState == 4){
+					var val = obj.responseText;
+					document.getElementById("complaints").innerHTML=val;
+				}
 			}
+					
+				/*var val = JSON.parse(obj.responseText);
+				document.getElementById("complaints").innerHTML="Hellloo";
+				for(var i=0;i<val.length;i++){
+				//alert(JSON.stringify(val, null, ' ');
+				tempval = val[i];
+				document.getElementById("complaints").innerHTML+="HiVidya";*/
+				/*}
+				}
+				}*/
+				obj.open("GET",url, true);
+				obj.send();
+				}
 		</script>
 	</head>
 	<body onload="Hi()">

@@ -54,14 +54,25 @@ def show_feed():
 
 @app.route('/get_complaints')
 def get_complaints():
-	info = {
+	'''info = {
        "ip" : "127.0.0.1",
        "hostname" : "everest",
        "description" : "Main server",
        "load" : [ 3.21, 7, 14 ]
     }
-	return jsonify(info)
+	return jsonify(info)'''
+	return "oi"
 
+	'''c,conn=connection()
+	c.execute("select * from COMPLAINTS order by c_time_of_lodging DESC;");
+	return "oi"
+	results=c.fetchall()
+	arr=[]
+	for rows in results:
+		arr.append(rows[0])
+	return "oi"
+	return jsonify(arr)
+'''
 
 if __name__=='__main__':
 	app.run(debug=True)
