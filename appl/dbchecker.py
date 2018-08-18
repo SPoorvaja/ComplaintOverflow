@@ -1,4 +1,5 @@
 from dbconnector import connection
+import hashlib as hl
 # c,conn = connection()
 
 def auth_user(username, password):
@@ -14,5 +15,5 @@ def auth_user(username, password):
 				return False
 		return False
 
-def register_user(username, first_name, last_name, ):
+#def register_user(username, first_name, last_name, ):
 #auth_user('abc','def')
