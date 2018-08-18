@@ -37,11 +37,13 @@ def search_db(keyword):
 	c,conn = connection()
 
 	rows = c.execute("select * from COMPLAINTS")
-	res = rows.fetchall()
+	if rows > 0:
 	lis = []
-	for i in range(len(res)):
-		text = res[i][3]
-		words = r.split(" ")
-		if text in words:
-			lis.append(res[i][0])
+	res = c.fetchall()
+		for i in range(len(res)):
+			text = res[i][3]
+			words = r.split(" ")
+			if text in words:
+				lis.append(res[i][0])
+	return lis
 
