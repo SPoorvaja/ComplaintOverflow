@@ -7,29 +7,29 @@ USE CLP;
 DROP TABLE PUBLIC;
 CREATE TABLE PUBLIC(
 #___Public User ID, generated after otp check___
-p_uid VARCHAR(10) PRIMARY KEY, 
+p_uid VARCHAR(10) PRIMARY KEY,
 #___Password, generated with user id, hashed___
 p_pwd VARCHAR(100),
 #___First Name___
 p_fname VARCHAR(100),
 #___Last Name___
-p_lname VARCHAR(100), 
+p_lname VARCHAR(100),
 #___Date of birth, check to see if 18___
-p_dob DATE, 
+p_dob DATE,
 #___Phone Number, send otp and validate___
-p_ph NUMERIC NOT NULL UNIQUE, 
+p_ph NUMERIC NOT NULL UNIQUE,
 #___Email ID___
 p_email VARCHAR(100),
 #___Address Line1___
-p_addr_l1 VARCHAR(100), 
+p_addr_l1 VARCHAR(100),
 #___Address Line2___
-p_addr_l2 VARCHAR(100), 
+p_addr_l2 VARCHAR(100),
 #___Address Pincode___
-p_addr_pincode NUMERIC, 
+p_addr_pincode NUMERIC,
 #___Address City___
 p_addr_city VARCHAR(100),
 #___Address State___
-p_addr_state VARCHAR(100) 
+p_addr_state VARCHAR(100)
 );
 
 /*Create a new table to store complaints*/
@@ -91,29 +91,16 @@ time_of_resolving DATETIME
 
 
 
+insert into COMPLAINTS values ("100","Railways","blah","blah blah",FALSE, "bllaahh");
+insert into COMPLAINTS values ("101","pwd","blah","blah blah",FALSE, "bllaahh");
+insert into COMPLAINTS values ("102","edu","blah","blah blah",FALSE, "bllaahh");
+
+insert into PUBLIC values ("u1","pass1","f1","l1",'2018-08-18',1231,"e1","a11","a21",123,"c1","s2");
+insert into PUBLIC values ("u2","pass1","f1","l1",'2018-08-18',1232,"e1","a11","a21",123,"c1","s2");
+insert into PUBLIC values ("u3","pass1","f1","l1",'2018-08-18',1233,"e1","a11","a21",123,"c1","s2");
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+insert into PUBLIC_COMPLAINTS values ("u1","100",'2018-08-18 00:00:00');
+insert into PUBLIC_COMPLAINTS values ("u1","101",'2018-08-18 00:00:00');
+insert into PUBLIC_COMPLAINTS values ("u2","102",'2018-08-18 00:00:00');
+insert into PUBLIC_COMPLAINTS values ("u2","100",'2018-08-18 00:00:00');
