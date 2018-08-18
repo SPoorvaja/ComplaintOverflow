@@ -1,4 +1,5 @@
 from dbconnector import connection
+import hashlib as hl
 # c,conn = connection()
 
 def auth_user(username, password):
@@ -14,6 +15,10 @@ def auth_user(username, password):
 				return False
 		return False
 
+<<<<<<< HEAD
+#def register_user(username, first_name, last_name, ):
+#auth_user('abc','def')
+=======
 def register_user(username, first_name, last_name, dob, phone, email,addr1,addr2,pincode, city, state, password ):
 #auth_user('abc','def')
 	c,conn = connection()
@@ -28,3 +33,4 @@ def register_user(username, first_name, last_name, dob, phone, email,addr1,addr2
 	ins = c.execute("insert into USER values (?,?,?,?,?,?,?,?,?,?,?,?)",(username, first_name, last_name, dob, phone, email,addr1,addr2,pincode, city, state, password  ))
 	conn.commit()
 	c.close()
+>>>>>>> 8fad8296610d5299b3f790e996b25765bebe56bd
