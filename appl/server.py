@@ -62,13 +62,6 @@ def show_feed():
 
 @app.route('/get_complaints')
 def get_complaints():
-	'''info = {
-       "ip" : "127.0.0.1",
-       "hostname" : "everest",
-       "description" : "Main server",
-       "load" : [ 3.21, 7, 14 ]
-    }
-	return jsonify(info)'''
 	c,conn=connection()
 	rows = c.execute("select * from COMPLAINTS ORDER BY c_time_of_lodging DESC;");
 	if rows > 0:
@@ -79,18 +72,13 @@ def get_complaints():
 			print("Hello")
 		print("Out of loop")
 	return jsonify(arr)
-<<<<<<< HEAD
 
-@app.route('/get_data')
+@app.route('/get_data', methods=['GET', 'POST'])
 def get_data():
-	print(request.GET['HIII']);
-@app.route('/api/search')
-||||||| merged common ancestors
-@app.route('/api/search')
-=======
+	print(request.args['HIII']);
+	return redirect(url_for('hello_world'))
 
 @app.route('/api/search', methods=['GET', 'POST'])
->>>>>>> 05d450a2bbae6087057864a56442f9191165c289
 def search_db():
 	keyword = request.args.get('q')
 	if keyword is not None:
