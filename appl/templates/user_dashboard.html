@@ -45,12 +45,9 @@
 				obj.open("GET",url, true);
 				obj.send();
 				}
-<<<<<<< HEAD
 				function clickedtheplus(obj){
 					document.getElementById("complaints").innerHTML+="<tr><td>HI</td></tr>";
 				}
-||||||| merged common ancestors
-=======
 
 				function search_ajax(){
 					var url="/api/search"
@@ -68,7 +65,6 @@
 					obj.open("GET", url, true);
 					obj.send();
 				}
->>>>>>> 05d450a2bbae6087057864a56442f9191165c289
 		</script>
 	</head>
 	<body onload="Hi()">
@@ -88,13 +84,8 @@
 		</h1>
 		<div>
 			SEARCH: <input style="width:20cm;" type = "text" id = "Query" name="Query"/>
-<<<<<<< HEAD
-			<input type = "submit" id = "button1" value = "Go!" onclick="clickedtheplus(this)" />
-||||||| merged common ancestors
-			<input type = "submit" id = "button1" value = "Go!" onclick="Hi()" />
-=======
-			<input type = "submit" id = "button1" value = "Go!" onclick="search_ajax()" />
->>>>>>> 05d450a2bbae6087057864a56442f9191165c289
+
+			<input type = "submit" id = "button3" value = "Go!" onclick="search_ajax()" />
 		</div>
 		<!--<div id = "complaints" > </div>-->
 		<table style = "margin-top:2cm;" id = "complaints" name="complaints"> 

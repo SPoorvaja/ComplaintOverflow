@@ -1,5 +1,5 @@
 from flask import Flask,send_file,request,render_template,redirect,url_for,session,flash,jsonify
-from dbchecker import auth_user
+from dbchecker import auth_user, search_db
 from dbconnector import connection
 import os
 app = Flask(__name__)
@@ -79,19 +79,14 @@ def get_complaints():
 			print("Hello")
 		print("Out of loop")
 	return jsonify(arr)
-<<<<<<< HEAD
 
 @app.route('/get_data')
 def get_data():
 	print(request.GET['HIII']);
-@app.route('/api/search')
-||||||| merged common ancestors
-@app.route('/api/search')
-=======
+
 
 @app.route('/api/search', methods=['GET', 'POST'])
->>>>>>> 05d450a2bbae6087057864a56442f9191165c289
-def search_db():
+def search_my():
 	keyword = request.args.get('q')
 	if keyword is not None:
 		lis = search_db(keyword)
