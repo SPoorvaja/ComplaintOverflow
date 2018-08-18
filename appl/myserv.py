@@ -1,5 +1,5 @@
 from flask import Flask,send_file,request,render_template,redirect,url_for,session,flash,jsonify
-from dbchecker import auth_user
+from dbchecker import auth_user, search_db
 import os
 app = Flask(__name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -35,7 +35,11 @@ def search_c():
 	return render_template('')
 @app.route('api/searching', methods=['GET', 'POST'])
 def search_db():
-	pass
+	keyword = request.form['Query']
+	if keyword is not None:
+		lis = search_db(keyword)
+	if lis is not None:
+		
 
 if __name__=='__main__':
 	app.run(debug=True)

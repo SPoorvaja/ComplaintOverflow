@@ -1,5 +1,6 @@
 from dbconnector import connection
 import hashlib as hl
+
 # c,conn = connection()
 
 def auth_user(username, password):
@@ -36,4 +37,11 @@ def search_db(keyword):
 	c,conn = connection()
 
 	rows = c.execute("select * from COMPLAINTS")
-	
+	res = rows.fetchall()
+	lis = []
+	for i in range(len(res)):
+		text = res[i][3]
+		words = r.split(" ")
+		if text in words:
+			lis.append(res[i][0])
+
