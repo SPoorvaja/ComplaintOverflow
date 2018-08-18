@@ -3,29 +3,44 @@ from dbchecker import auth_user
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def hello_world():
 	#return 'Hello World'
 	if not session.get('logged_in'):
-		return render_template("login_user.html")
+		if(request.method == 'GET' or request.method == 'POST'):
+			return redirect(url_for('login_user'))
+		#return render_template("login_user.html")
 	else:
-		return "I'm your user feed."
+		return redirect(url_for('show_feed'))
+
 	'''
 	if not session.get('logged_in'):
 		return render_template('login_user.html')
     else:
     	return redirect(url_for('show_feed'))'''
-
-'''@app.route('/login')
-def login_user():
-	if(request.method == 'POST'):
-		uname = request.form['uname']
-		passwd = request.form['pwd']
-		if(auth_user(uname,pwd) == True):
+'''
+@app.route('/login')
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Please try again.'
+        else:
 			session['logged_in'] = True
-			session['user'] = uname
-			return redirect(url_for('hello_world'))
-	return render_template('login_user.html')'''
+			session['user'] = request.form['username']
+			return redirect(url_for('show_feed'))
+    return render_template('login_user.html', error=error)'''
+@app.route('/login')
+def login_user():
+	error = None
+	if request.method == 'POST':
+		if request.form['uname'] != 'admin' or request.form['pwd'] != 'pass':
+			error = 'Invalid Credentials. Try again.'
+		else:
+			session['logged_in'] = True
+			session['user'] = request.form['uname']
+			return redirect(url_for('show_feed'))
+	return render_template('login_user.html', error=error)
 
 @app.route('/home')
 def show_feed():
