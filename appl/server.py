@@ -75,29 +75,11 @@ def get_complaints():
 
 @app.route('/get_data', methods=['GET', 'POST'])
 def get_data():
-<<<<<<< HEAD
 	print(request.args['HIII']);
 	return redirect(url_for('hello_world'))
-||||||| merged common ancestors
-	print(request.GET['HIII']);
-@app.route('/api/search')
-||||||| merged common ancestors
-@app.route('/api/search')
-=======
-=======
-	print(request.GET['HIII']);
-
->>>>>>> 2f64f6e14756b451efea7da119642f3da8c6afee
 
 @app.route('/api/search', methods=['GET', 'POST'])
-<<<<<<< HEAD
 def search_db():
-||||||| merged common ancestors
->>>>>>> 05d450a2bbae6087057864a56442f9191165c289
-def search_db():
-=======
-def search_my():
->>>>>>> 2f64f6e14756b451efea7da119642f3da8c6afee
 	keyword = request.args.get('q')
 	if keyword is not None:
 		lis = search_db(keyword)
