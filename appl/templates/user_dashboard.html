@@ -33,7 +33,7 @@
 					var val = JSON.parse(obj.responseText);
 					for(var i=0;i<val.length;i++){
 					//tempval = val[i][0];
-					document.getElementById("complaints1").innerHTML+="Hi"+val[i][1]+" ";
+					document.getElementById("complaints").innerHTML+="Hi"+val[i][1]+" ";
 					}
 				}
 			}
@@ -64,7 +64,14 @@
 			SEARCH: <input style="width:20cm;" type = "text" id = "Query" name="Query"/>
 			<input type = "submit" id = "button1" value = "Go!" onclick="Hi()" />
 		</div>
-		<div style = "margin-top:2cm;" id = "complaints"> </div>
-		<div style = "margin-top:2cm;" id = "complaints1"> </div>
+		<table style = "margin-top:2cm;" id = "complaints"> 
+			<tr>
+				<th>Complaint ID</th>
+				<th>Department</th>
+				<th>Subject</th>
+				<th>Text</th>
+				
+			</tr>
+		</table>
 	</body>
 </html>
