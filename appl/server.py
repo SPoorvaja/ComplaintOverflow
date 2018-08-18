@@ -8,7 +8,8 @@ def hello_world():
 	#return 'Hello World'
 	if not session.get('logged_in'):
 		if(request.method == 'GET' or request.method == 'POST'):
-			return redirect(url_for('login_user'))
+			#return redirect(url_for('login_user'))
+			pass
 		#return render_template("login_user.html")
 	else:
 		return redirect(url_for('show_feed'))
@@ -30,10 +31,10 @@ def login():
 			session['user'] = request.form['username']
 			return redirect(url_for('show_feed'))
     return render_template('login_user.html', error=error)'''
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login_user():
 	error = None
-	if request.method == 'POST':
+	if request.method == 'POST' or request.method == 'GET':
 		if request.form['uname'] != 'admin' or request.form['pwd'] != 'pass':
 			error = 'Invalid Credentials. Try again.'
 		else:
