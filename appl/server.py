@@ -73,6 +73,10 @@ def get_complaints():
 			print("Hello")
 		print("Out of loop")
 	return jsonify(arr)
+
+@app.route('/get_data')
+def get_data():
+	print(request.GET['HIII']);
 @app.route('/api/search')
 def search_db():
 	keyword = request.form['Query']

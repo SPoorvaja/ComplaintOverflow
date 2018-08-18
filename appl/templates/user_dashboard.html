@@ -34,7 +34,7 @@
 				document.getElementById("complaints").innerHTML="Hi"+val[0].length;
 					for(var i=0;i<val.length;i++){
 					//tempval = val[i][0];
-					document.getElementById("complaints").innerHTML+="<tr><td>"+val[i][0]+"</td><td>"+val[i][1]+"</td><td>"+val[i][2]+"</td><td>"+val[i][3]+"</td><td>"+val[i][4]+"</td><td>"+"<button onclick='/login'>+</button></td><td>"+val[i][5]+"</td><td>"+val[i][6]+"</td></tr>";					}
+					document.getElementById("complaints").innerHTML+="<form action='/get_data' method='get'><tr><td>"+val[i][0]+"</td><td>"+val[i][1]+"</td><td>"+val[i][2]+"</td><td>"+val[i][3]+"</td><td>"+val[i][4]+"</td><td>"+"<input type='submit' value = 'HIII' id='HIII' name='HIII'/></td><td>"+val[i][5]+"</td><td>"+val[i][6]+"</td></tr></form>";					}
 				}
 			}
 					
@@ -44,6 +44,9 @@
 				//}
 				obj.open("GET",url, true);
 				obj.send();
+				}
+				function clickedtheplus(obj){
+					document.getElementById("complaints").innerHTML+="<tr><td>HI</td></tr>";
 				}
 		</script>
 	</head>
@@ -62,7 +65,7 @@
 		</h1>
 		<div>
 			SEARCH: <input style="width:20cm;" type = "text" id = "Query" name="Query"/>
-			<input type = "submit" id = "button1" value = "Go!" onclick="Hi()" />
+			<input type = "submit" id = "button1" value = "Go!" onclick="clickedtheplus(this)" />
 		</div>
 		<!--<div id = "complaints" > </div>-->
 		<table style = "margin-top:2cm;" id = "complaints" name="complaints"> 
