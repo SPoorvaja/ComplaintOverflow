@@ -1,5 +1,5 @@
 from flask import Flask,send_file,request,render_template,redirect,url_for,session,flash,jsonify
-from dbchecker import auth_user
+from dbchecker import auth_user, search_db
 import os
 app = Flask(__name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -11,7 +11,7 @@ def hello():
 	if not session.get('logged_in'):
 		return redirect(url_for('login_u'))
 	else:
-		return redirect(url_for('user_feed()'))
+		return redirect(url_for('user_feed'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_u():
@@ -29,6 +29,17 @@ def login_u():
 @app.route('/feed', methods=['GET', 'POST'])
 def user_feed():
 	return 'HIII!!! I AM USER FEED'
+
+@app.route('/search', methods=['GET', 'POST'])
+def search_c():
+	return render_template('')
+@app.route('/api/searching', methods=['GET', 'POST'])
+def search_db():
+	keyword = request.form['Query']
+	if keyword is not None:
+		lis = search_db(keyword)
+	if lis is not None:
+		return jsonify(lis)
 
 if __name__=='__main__':
 	app.run(debug=True)
