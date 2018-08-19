@@ -93,9 +93,6 @@ def log_out():
 	session['user'] = None
 	return redirect(url_for('login_u'))
 
-if __name__=='__main__':
-	app.run(debug=True)
-
 @app.route('/reask', methods=['GET', 'POST'])
 def reask():
 	c,conn=connection()
@@ -112,3 +109,10 @@ def reask():
 	conn.commit()
 	c.close()
 	return redirect(url_for('hello_world'))
+
+@app.route('/lodge', methods=['GET', 'POST'])
+def lodge_complaint():
+	return render_template('lodge_complaint.html')
+
+if __name__=='__main__':
+	app.run(debug=True)
