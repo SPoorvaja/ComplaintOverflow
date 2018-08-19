@@ -96,6 +96,7 @@ time_of_resolving DATETIME
 insert into COMPLAINTS values ("100","Railways","blah","blah blah","2018-08-18 00:00:00", FALSE, "bllaahh");
 insert into COMPLAINTS values ("101","pwd","blah","blah blah","2018-08-18 00:00:00", FALSE, "bllaahh");
 insert into COMPLAINTS values ("102","edu","blah","blah blah","2018-08-18 00:00:00", FALSE, "bllaahh");
+insert into COMPLAINTS values ("103","edu","blah","blah blah","2018-08-18 00:00:00", FALSE, "bllaahh");
 
 insert into PUBLIC values ("u1","pass1","f1","l1",'2018-08-18',1231,"e1","a11","a21",123,"c1","s2");
 insert into PUBLIC values ("u2","pass1","f1","l1",'2018-08-18',1232,"e1","a11","a21",123,"c1","s2");
@@ -106,3 +107,5 @@ insert into PUBLIC_COMPLAINTS values ("u1","100",'2018-08-18 00:00:00');
 insert into PUBLIC_COMPLAINTS values ("u1","101",'2018-08-18 00:00:00');
 insert into PUBLIC_COMPLAINTS values ("u2","102",'2018-08-18 00:00:00');
 insert into PUBLIC_COMPLAINTS values ("u2","100",'2018-08-18 00:00:00');
+insert into PUBLIC_COMPLAINTS values ("u2","103",'2018-08-18 00:00:00');
+insert into PUBLIC_COMPLAINTS values ("u1","103",'2018-08-18 00:00:00');
