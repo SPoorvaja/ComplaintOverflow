@@ -43,7 +43,9 @@ def search_db(keyword):
 		for i in range(len(res)):
 			#text = res[i][3]
 			words = res[i][3].split(" ")
-			if keyword in words:
-				lis.append([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6]])
+			kw = keyword.split(" ")
+			for k in kw:
+				if k in words:
+					lis.append([res[i][0], res[i][1], res[i][2], res[i][3], res[i][4], res[i][5], res[i][6]])
 	return lis
 

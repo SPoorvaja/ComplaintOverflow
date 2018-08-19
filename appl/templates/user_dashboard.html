@@ -57,7 +57,8 @@
 							var val = JSON.parse(obj.responseText);
 							document.getElementById("complaints").innerHTML = "";
 							for(var i = 0; i < val.length; i++){
-								document.getElementById("complaints").innerHTML += "Hi " + val[i][0] + " ";
+								//document.getElementById("complaints").innerHTML += "Hi " + val[i][0] + " ";
+								document.getElementById("complaints").innerHTML+="<form action='/get_data' method='get'><tr><td>"+val[i][0]+"</td><td>"+val[i][1]+"</td><td>"+val[i][2]+"</td><td>"+val[i][3]+"</td><td>"+val[i][4]+"</td><td>"+"<input type='submit' value = 'HIII' id='HIII' name='HIII'/></td><td>"+val[i][5]+"</td><td>"+val[i][6]+"</td></tr></form>";
 							}
 						}
 					}
