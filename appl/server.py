@@ -1,6 +1,7 @@
 from flask import Flask,send_file,request,render_template,redirect,url_for,session,flash,jsonify
 from dbchecker import auth_user, search_db
 from dbconnector import connection
+from datetime import datetime
 import os
 app = Flask(__name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -62,13 +63,6 @@ def show_feed():
 
 @app.route('/get_complaints')
 def get_complaints():
-	'''info = {
-       "ip" : "127.0.0.1",
-       "hostname" : "everest",
-       "description" : "Main server",
-       "load" : [ 3.21, 7, 14 ]
-    }
-	return jsonify(info)'''
 	c,conn=connection()
 	rows = c.execute("select * from COMPLAINTS ORDER BY c_time_of_lodging DESC;");
 	if rows > 0:
@@ -80,13 +74,13 @@ def get_complaints():
 		print("Out of loop")
 	return jsonify(arr)
 
-@app.route('/get_data')
+@app.route('/get_data', methods=['GET', 'POST'])
 def get_data():
-	print(request.GET['HIII']);
-
+	print(request.args['HIII']);
+	return redirect(url_for('hello_world'))
 
 @app.route('/api/search', methods=['GET', 'POST'])
-def search_my():
+def search_db():
 	keyword = request.args.get('q')
 	if keyword is not None:
 		lis = search_db(keyword)
@@ -97,7 +91,24 @@ def search_my():
 def log_out():
 	session['logged_in'] = False
 	session['user'] = None
-	return(redirect(url_for('login_u')))
+	return redirect(url_for('login_u'))
 
 if __name__=='__main__':
 	app.run(debug=True)
+
+@app.route('/reask', methods=['GET', 'POST'])
+def reask():
+	c,conn=connection()
+	uid= session['user']
+	cid = request.args['c']
+	print("PID = ")
+	print(uid)
+	print("CID =")
+	print(cid)
+	rowcount1 = c.execute("select * from PUBLIC_COMPLAINTS where p_uid_f='" + uid  + "' and c_id_uf='"+cid+"';");
+	if rowcount1>0:
+		return redirect(url_for('hello_world'))
+	rows = c.execute("insert into PUBLIC_COMPLAINTS values('"+str(uid)+"','"+str(cid)+"','"+datetime.now().strftime('%Y-%m-%d %H:%M:%S')+"');");
+	conn.commit()
+	c.close()
+	return redirect(url_for('hello_world'))
