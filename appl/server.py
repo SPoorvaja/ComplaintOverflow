@@ -54,6 +54,24 @@ def login_u():
 			return redirect(url_for('login_u'))
 	return render_template('login_user.html')
 
+@app.route('/adminlogin', methods=['GET', 'POST'])
+def login_admin():
+	if request.method == 'POST':
+		uname = request.form['admin']
+		paswd = request.form['pwd']
+		if(uname == 'admin' and paswd == 'password'):
+			session['logged_in'] = True
+			session['user'] = uname
+			session['admin'] = True
+			return redirect(url_for('admin_home'))
+		else:
+			return redirect(url_for('login_admin'))
+	return render_template('login_admin.html')
+
+@app.route('/adminhome')
+def admin_home():
+	render_template('admin_home.html')
+
 @app.route('/home')
 def show_feed():
 	if not session.get('logged_in'):
@@ -80,7 +98,7 @@ def get_data():
 	return redirect(url_for('hello_world'))
 
 @app.route('/api/search', methods=['GET', 'POST'])
-def search_db():
+def search_q():
 	keyword = request.args.get('q')
 	if keyword is not None:
 		lis = search_db(keyword)
