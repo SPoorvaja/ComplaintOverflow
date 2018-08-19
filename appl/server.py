@@ -88,12 +88,19 @@ def log_out():
 	session['user'] = None
 	return redirect(url_for('login_u'))
 
+<<<<<<< HEAD
 @app.route('/lodge_complaint_page', methods=['GET', 'POST'])
 def lodge_complaint_page():
 	return render_template('lodge_complaint.html')
 if __name__=='__main__':
 	app.run(debug=True)
 
+||||||| merged common ancestors
+if __name__=='__main__':
+	app.run(debug=True)
+
+=======
+>>>>>>> cf1b406188ad1ff1622bd6dfe41cc5a89619e035
 @app.route('/reask', methods=['GET', 'POST'])
 def reask():
 	c,conn=connection()
@@ -110,6 +117,7 @@ def reask():
 	row1 = c.execute("update COMPLAINTS set c_time_of_lodging = '"+datetime.now().strftime('%Y-%m-%d %H:%M:%S')+"' where c_id = "+cid+";")
 	conn.commit()
 	c.close()
+<<<<<<< HEAD
 	return redirect(url_for('hello_world'))
 
 @app.route('/get_my_complaints')
@@ -146,3 +154,16 @@ def lodge_complaint():
 	conn.commit()
 	c.close()'''
 	return redirect(url_for('hello_world'))
+||||||| merged common ancestors
+	return redirect(url_for('hello_world'))
+=======
+	return redirect(url_for('hello_world'))
+
+
+@app.route('/lodge', methods=['GET', 'POST'])
+def lodge_complaint():
+	return render_template('lodge_complaint.html')
+
+if __name__=='__main__':
+	app.run(debug=True)
+>>>>>>> cf1b406188ad1ff1622bd6dfe41cc5a89619e035

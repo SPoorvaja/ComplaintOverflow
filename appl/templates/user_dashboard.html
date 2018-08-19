@@ -39,7 +39,8 @@
 							var val = JSON.parse(obj.responseText);
 							document.getElementById("complaints").innerHTML = "<tr><th>Complaint ID</th><th>Department</th><th>Subject</th><th>Text</th><th>Time</th><th>ReAsk</th><th>Status</th><th>Resolve Update</th></tr>";
 							for(var i = 0; i < val.length; i++){
-								document.getElementById("complaints").innerHTML += "Hi " + val[i][0] + " ";
+								//document.getElementById("complaints").innerHTML += "Hi " + val[i][0] + " ";
+								document.getElementById("complaints").innerHTML+="<form action='/get_data' method='get'><tr><td>"+val[i][0]+"</td><td>"+val[i][1]+"</td><td>"+val[i][2]+"</td><td>"+val[i][3]+"</td><td>"+val[i][4]+"</td><td>"+"<input type='submit' value = 'HIII' id='HIII' name='HIII'/></td><td>"+val[i][5]+"</td><td>"+val[i][6]+"</td></tr></form>";
 							}
 						}
 					}
@@ -57,17 +58,43 @@
 					Log Out
 				</button>
 				</form>
+<<<<<<< HEAD
 				<form method="post" action="/lodge_complaint_page">
 				<button style="margin-left:2cm;"> 
+||||||| merged common ancestors
+				<button style="margin-left:2cm;" onclick="window.location.href='lodge_complaint.html'"> 
+=======
+				<form method="post" action="/lodge">
+				<button style="margin-left:2cm;"> 
+>>>>>>> cf1b406188ad1ff1622bd6dfe41cc5a89619e035
 					Lodge a complaint 
+<<<<<<< HEAD
 				</button>
 			</form>
 				<button style="margin-left:2cm;" onclick="myComplaintsFn()">
+||||||| merged common ancestors
+				</button>
+				<button style="margin-left:2cm;" onclick="window.location.href='lodge_complaint.html'">
+=======
+				</button>	
+				</form>
+				
+				<form>
+				<button style="margin-left:2cm;" onclick="window.location.href='lodge_complaint.html'">
+>>>>>>> cf1b406188ad1ff1622bd6dfe41cc5a89619e035
 					View Complaint History
+<<<<<<< HEAD
 				</button>
 				<button style="margin-left:2cm;" onclick="fetchFeed()">
 					View Feed
 				</button>
+||||||| merged common ancestors
+				</button>
+=======
+				</button>	
+				</form>
+				
+>>>>>>> cf1b406188ad1ff1622bd6dfe41cc5a89619e035
 		</h1>
 		<div>
 			SEARCH: <input style="width:20cm;" type = "text" id = "Query" name="Query"/>
