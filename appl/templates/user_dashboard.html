@@ -1,13 +1,14 @@
 <html>
 	<head>
 		<script>
-			function Hi(){
+			function fetchFeed(){
 				var url = "/get_complaints";
 				var obj = new XMLHttpRequest();
 				obj.onreadystatechange = function(){
 				if(obj.readyState == 4){
 					var val = JSON.parse(obj.responseText);
-				document.getElementById("complaints").innerHTML="Hi"+val[0].length;
+				document.getElementById("complaints").innerHTML=
+							document.getElementById("complaints").innerHTML = "<tr><th>Complaint ID</th><th>Department</th><th>Subject</th><th>Text</th><th>Time</th><th>ReAsk</th><th>Status</th><th>Resolve Update</th></tr>";
 					for(var i=0;i<val.length;i++){
 					document.getElementById("complaints").innerHTML+="<tr><td>"+val[i][0]+"</td><td>"+val[i][1]+"</td><td>"+val[i][2]+"</td><td>"+val[i][3]+"</td><td>"+val[i][4]+"</td><td>"+"<form action='/reask' method='get'><button type='submit' value = '"+val[i][0]+"' id='c' name='c'>+</button></form></td><td>"+val[i][5]+"</td><td>"+val[i][6]+"</td></tr>";					}
 				}
@@ -15,14 +16,28 @@
 				obj.open("GET",url, true);
 				obj.send();
 				}
+				function myComplaintsFn(){
+					var url = "/get_my_complaints";
+					var obj = new XMLHttpRequest();
+					obj.onreadystatechange = function(){
+					if(obj.readyState == 4){
+						var val = JSON.parse(obj.responseText);
+					document.getElementById("complaints").innerHTML="<tr><th>Complaint ID</th><th>Department</th><th>Subject</th><th>Text</th><th>Time</th><th>Status</th><th>Resolve Update</th></tr>";
+						for(var i=0;i<val.length;i++){
+						document.getElementById("complaints").innerHTML+="<tr><td>"+val[i][0]+"</td><td>"+val[i][1]+"</td><td>"+val[i][2]+"</td><td>"+val[i][3]+"</td><td>"+val[i][4]+"</td><td>"+val[i][5]+"</td><td>"+val[i][6]+"</td></tr>";					}
+				}
+				}
 
+				obj.open("GET",url, true);
+				obj.send();
+			}
 				function search_ajax(){
 					var url="/api/search"
 					var obj = new XMLHttpRequest();
 					obj.onreadystatechange = function(){
 						if(obj.readyState == 4){
 							var val = JSON.parse(obj.responseText);
-							document.getElementById("complaints").innerHTML = "";
+							document.getElementById("complaints").innerHTML = "<tr><th>Complaint ID</th><th>Department</th><th>Subject</th><th>Text</th><th>Time</th><th>ReAsk</th><th>Status</th><th>Resolve Update</th></tr>";
 							for(var i = 0; i < val.length; i++){
 								document.getElementById("complaints").innerHTML += "Hi " + val[i][0] + " ";
 							}
@@ -34,7 +49,7 @@
 				}
 		</script>
 	</head>
-	<body onload="Hi()">
+	<body onload="fetchFeed()">
 		<h1>
 				Welcome
 				<form method="post" action="/logout">
@@ -42,28 +57,24 @@
 					Log Out
 				</button>
 				</form>
-				<button style="margin-left:2cm;" onclick="window.location.href='lodge_complaint.html'"> 
+				<form method="post" action="/lodge_complaint_page">
+				<button style="margin-left:2cm;"> 
 					Lodge a complaint 
 				</button>
-				<button style="margin-left:2cm;" onclick="window.location.href='lodge_complaint.html'">
+			</form>
+				<button style="margin-left:2cm;" onclick="myComplaintsFn()">
 					View Complaint History
+				</button>
+				<button style="margin-left:2cm;" onclick="fetchFeed()">
+					View Feed
 				</button>
 		</h1>
 		<div>
 			SEARCH: <input style="width:20cm;" type = "text" id = "Query" name="Query"/>
 			<input type = "submit" id = "button1" value = "Go!" onclick="search_ajax()" />
 		</div>
-		<table style = "margin-top:2cm;" id = "complaints" name="complaints"> 
-			<tr>
-				<th>Complaint ID</th>
-				<th>Department</th>
-				<th>Subject</th>
-				<th>Text</th>
-				<th>Time</th>
-				<th>ReAsk</th>
-				<th>Status</th>
-				<th>Resolve Update</th>
-			</tr>
+		<table id="complaints" name ="complaints">
+			
 		</table>
 	</body>
 </html>
