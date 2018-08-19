@@ -2,30 +2,6 @@
 	<head>
 		<script>
 			function Hi(){
-				//document.getElementById("complaints").innerHTML="Hi";
-				/*var ajax_get = function(url, callback) {
-					var xmlhttp = new XMLHttpRequest();
-	        		xmlhttp.onreadystatechange = function() {
-		            	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			                	console.log('responseText:' + xmlhttp.responseText);
-			                try {
-			                    var data = JSON.parse(xmlhttp.responseText);
-			                } 
-			                catch(err) {
-			                    console.log(err.message + " in " + xmlhttp.responseText);
-			                    return;
-			                }
-			                callback(data);
-		            	}
-	            	};
-	            	xmlhttp.open("GET", url, true);
-        			xmlhttp.send();
-            	};
-            	ajax_get('/get_complaints', function(data){
-					document.getElementById('description').innerHTML = data['description'];
-            		}
-            	);*/
-
 				var url = "/get_complaints";
 				var obj = new XMLHttpRequest();
 				obj.onreadystatechange = function(){
@@ -33,20 +9,11 @@
 					var val = JSON.parse(obj.responseText);
 				document.getElementById("complaints").innerHTML="Hi"+val[0].length;
 					for(var i=0;i<val.length;i++){
-					//tempval = val[i][0];
-					document.getElementById("complaints").innerHTML+="<tr><td>"+val[i][0]+"</td><td>"+val[i][1]+"</td><td>"+val[i][2]+"</td><td>"+val[i][3]+"</td><td>"+val[i][4]+"</td><td>"+"<form action='/get_data' method='get'><button type='submit' value = 'ComplaintID:"+val[i][0]+"' id='HIII' name='HIII'>+</button></form></td><td>"+val[i][5]+"</td><td>"+val[i][6]+"</td></tr>";					}
+					document.getElementById("complaints").innerHTML+="<tr><td>"+val[i][0]+"</td><td>"+val[i][1]+"</td><td>"+val[i][2]+"</td><td>"+val[i][3]+"</td><td>"+val[i][4]+"</td><td>"+"<form action='/reask' method='get'><button type='submit' value = '"+val[i][0]+"' id='c' name='c'>+</button></form></td><td>"+val[i][5]+"</td><td>"+val[i][6]+"</td></tr>";					}
 				}
 			}
-					
-				
-				
-				//}
-				//}
 				obj.open("GET",url, true);
 				obj.send();
-				}
-				function clickedtheplus(obj){
-					document.getElementById("complaints").innerHTML+="<tr><td>HI</td></tr>";
 				}
 
 				function search_ajax(){
@@ -84,22 +51,8 @@
 		</h1>
 		<div>
 			SEARCH: <input style="width:20cm;" type = "text" id = "Query" name="Query"/>
-<<<<<<< HEAD
-			<input type = "submit" id = "button3" value = "Go!" onclick="search_ajax()" />
-||||||| merged common ancestors
-<<<<<<< HEAD
-			<input type = "submit" id = "button1" value = "Go!" onclick="clickedtheplus(this)" />
-||||||| merged common ancestors
-			<input type = "submit" id = "button1" value = "Go!" onclick="Hi()" />
-=======
 			<input type = "submit" id = "button1" value = "Go!" onclick="search_ajax()" />
->>>>>>> 05d450a2bbae6087057864a56442f9191165c289
-=======
-
-			<input type = "submit" id = "button3" value = "Go!" onclick="search_ajax()" />
->>>>>>> 2f64f6e14756b451efea7da119642f3da8c6afee
 		</div>
-		<!--<div id = "complaints" > </div>-->
 		<table style = "margin-top:2cm;" id = "complaints" name="complaints"> 
 			<tr>
 				<th>Complaint ID</th>
