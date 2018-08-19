@@ -55,7 +55,7 @@
 					obj.onreadystatechange = function(){
 						if(obj.readyState == 4){
 							var val = JSON.parse(obj.responseText);
-
+							document.getElementById("complaints").innerHTML = "";
 							for(var i = 0; i < val.length; i++){
 								document.getElementById("complaints").innerHTML += "Hi " + val[i][0] + " ";
 							}
