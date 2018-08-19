@@ -56,10 +56,20 @@ def login_u():
 			return redirect(url_for('login_u'))
 	return render_template('login_user.html')
 
-<<<<<<< HEAD
 @app.route('/adminlogin', methods=['GET', 'POST'])
 def login_admin():
 	if request.method == 'POST':
+		uname = request.form['uname']
+		pwd = request.form['pwd']
+		if(uname == 'admin' and pwd == 'password'):
+			session['logged_in'] =True
+			session['user'] = uname
+			return redirect(url_for('admin_home'))
+		else:
+			return redirect(url_for('login_admin'))
+	return render_template('login_admin.html')
+
+	'''if request.method == 'POST':
 		uname = request.form['admin']
 		paswd = request.form['pwd']
 		if(uname == 'admin' and paswd == 'password'):
@@ -69,7 +79,7 @@ def login_admin():
 			return redirect(url_for('admin_home'))
 		else:
 			return redirect(url_for('login_admin'))
-	return render_template('login_admin.html')
+	return render_template('login_admin.html')'''
 
 @app.route('/adminhome')
 def admin_home():
@@ -82,8 +92,6 @@ def show_feed():
 	else:
 		return "I'm newsfeed! HAHAHA"
 
-=======
->>>>>>> 43d89174ec4ec2c72baa15ebf0269b67f1f26c4b
 @app.route('/get_complaints')
 def get_complaints():
 	c,conn=connection()
@@ -116,19 +124,11 @@ def log_out():
 	session['user'] = None
 	return redirect(url_for('login_u'))
 
-<<<<<<< HEAD
 @app.route('/lodge_complaint_page', methods=['GET', 'POST'])
 def lodge_complaint_page():
 	return render_template('lodge_complaint.html')
-if __name__=='__main__':
-	app.run(debug=True)
 
-||||||| merged common ancestors
-if __name__=='__main__':
-	app.run(debug=True)
 
-=======
->>>>>>> cf1b406188ad1ff1622bd6dfe41cc5a89619e035
 @app.route('/reask', methods=['GET', 'POST'])
 def reask():
 	c,conn=connection()
@@ -145,7 +145,6 @@ def reask():
 	row1 = c.execute("update COMPLAINTS set c_time_of_lodging = '"+datetime.now().strftime('%Y-%m-%d %H:%M:%S')+"' where c_id = "+cid+";")
 	conn.commit()
 	c.close()
-<<<<<<< HEAD
 	return redirect(url_for('hello_world'))
 
 @app.route('/get_my_complaints')
@@ -182,16 +181,6 @@ def lodge_complaint():
 	conn.commit()
 	c.close()'''
 	return redirect(url_for('hello_world'))
-||||||| merged common ancestors
-	return redirect(url_for('hello_world'))
-=======
-	return redirect(url_for('hello_world'))
-
-
-@app.route('/lodge', methods=['GET', 'POST'])
-def lodge_complaint():
-	return render_template('lodge_complaint.html')
 
 if __name__=='__main__':
 	app.run(debug=True)
->>>>>>> cf1b406188ad1ff1622bd6dfe41cc5a89619e035
